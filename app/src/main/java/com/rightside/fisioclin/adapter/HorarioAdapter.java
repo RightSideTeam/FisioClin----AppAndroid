@@ -7,9 +7,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rightside.fisioclin.R;
+import com.rightside.fisioclin.controller.NovaConsultaController;
 import com.rightside.fisioclin.model.Horario;
 
 import java.util.ArrayList;
@@ -19,10 +21,12 @@ public class HorarioAdapter extends RecyclerView.Adapter<HorarioAdapter.HorarioV
 
     private List<Horario> listHorarios;
     private Context context;
+    private FragmentActivity activity;
 
 
-    public HorarioAdapter(Context context) {
+    public HorarioAdapter(Context context, FragmentActivity activity) {
         this.context = context;
+        this.activity = activity;
         this.listHorarios = new ArrayList<>();
     }
 
@@ -39,6 +43,13 @@ public class HorarioAdapter extends RecyclerView.Adapter<HorarioAdapter.HorarioV
         holder.textViewData.setText(horario.getData());
         holder.textViewHora.setText(horario.getHora());
         holder.textViewDiaSemana.setText(horario.getDiaSemana());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NovaConsultaController.alertaDeNovaConsulta(activity, horario);
+            }
+        });
     }
 
     @Override

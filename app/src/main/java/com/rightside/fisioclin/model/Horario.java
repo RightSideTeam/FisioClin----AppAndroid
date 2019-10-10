@@ -1,6 +1,9 @@
 package com.rightside.fisioclin.model;
 
-public class Horario {
+import java.io.Serializable;
+
+public class Horario implements Serializable {
+
     private String data, diaSemana, hora;
     private int id;
 
